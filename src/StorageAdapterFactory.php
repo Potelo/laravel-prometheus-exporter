@@ -7,6 +7,7 @@ use Prometheus\Storage\Adapter;
 use Prometheus\Storage\APC;
 use Prometheus\Storage\InMemory;
 use Prometheus\Storage\Redis;
+use Predis\Client;
 
 class StorageAdapterFactory
 {
@@ -41,9 +42,12 @@ class StorageAdapterFactory
      */
     protected function makeRedisAdapter(array $config)
     {
+        $redis = Redis::usingPredis(new Client(['host' => config('prometheus.storage_adapters.redis.host')]));
+
         if (isset($config['prefix'])) {
-            Redis::setPrefix($config['prefix']);
+            $redis->setPrefix($config['prefix']);
         }
-        return new Redis($config);
+
+        return $redis;
     }
 }
