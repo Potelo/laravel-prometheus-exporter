@@ -42,7 +42,7 @@ class StorageAdapterFactory
      */
     protected function makeRedisAdapter(array $config)
     {
-        $redis = Redis::usingPredis(new Client(['host' => config('prometheus.storage_adapters.redis.host')]));
+        $redis = Redis::usingPredis(new Client(['host' => config('prometheus.storage_adapters.redis.host'), 'database' => config('prometheus.storage_adapters.redis.database')]));
 
         if (isset($config['prefix'])) {
             $redis->setPrefix($config['prefix']);
