@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.5 - 2020-03-16
+
+* Update call to array_get helper to use the Illuminate\Support\Arr class
+* Enable Laravel 7 compatability
+
+## 1.0.4 - 2019-10-17
+
+* Enable Laravel 6.0 compatability
+
 ## 1.0.3 - 2019-02-11
 
 * Enable package discovery for laravel 5.5+ 
